@@ -5,6 +5,10 @@ import torch.nn as nn
 from torchvision import models, transforms
 from PIL import Image
 import matplotlib.pyplot as plt
+import torch.nn.functional as F
+import matplotlib.cm as cm
+import numpy as np
+import cv2
 
 
 class Guided_backprop:
@@ -93,8 +97,8 @@ def guided_propagation_resnet50(img_path, save_path):
 
     result = normalize(result)
     plt.imsave(save_path, result)
-    # plt.show()
+    plt.show()
 
 
 if __name__ == '__main__':
-    guided_propagation_resnet50("./dog.jpeg", "./dog-vis.jpeg")
+    guided_propagation_resnet50("./dog.jpeg", "./dog-gprop-vis.jpeg")
