@@ -5,7 +5,8 @@ import cv2
 import torch
 from torchvision import models, transforms
 from PIL import Image
-
+import pydevd
+pydevd.settrace(suspend=False, trace_only_current_thread=True)
 
 def denormalize(img_tensor):
     """
@@ -67,7 +68,7 @@ class Grad_CAM:
 
         def save_grads(name):
             def backward_hook_fn(module, grad_input, grad_output):
-                # grad_output is a tuple w.r.t. each weight,
+                # grad_input is a tuple w.r.t. each weight and input,
                 # for the activated feature maps (i.e., a tuple contains only one tensor),
                 # we extract that explicitly.
                 self.grads_pool[name] = grad_output[0]

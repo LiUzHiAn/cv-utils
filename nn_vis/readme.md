@@ -5,8 +5,9 @@
 
 ## 1. Guided backpropagation
 Guided backpropagation was proposed in paper "Striving for Simplicity: The All Convolutional Net". The basic idea behind is that
-during backpropagation, we can refer to the gradient maps as "guidance" and only care the spatial positions where the gradient are positive. 
-That is to say, in the gradient maps, we discard those spatial positions which correspond to negative gradient.
+during backpropagation, we can refer to the feature maps as "guidance" and only care the spatial positions where the gradient are positive. 
+That is to say, in the gradient maps, we not only discard those spatial positions which correspond to negative gradient, but positions that 
+didn't get activated during forward pass.
 
 The implementation code is mostly referred from [here](https://zhuanlan.zhihu.com/p/75054200).
 
@@ -35,7 +36,7 @@ And Grad denotes gradient which means this method also makes use of gradient inf
 Unlike guided backpropagation, GradCAM does not using all the gradients but only a specific layer, say `layer4.2` in ResNet50. 
 The basic procedures are as follows:
  - First, we compute the gradient of a specified layer with respect to classification logits(values before softmax) 
- and then apply an average pooling in every single feature map. The result can be viewed as the sensibility the model pays to each channel;
+ and then apply an average pooling in every single channel of the gradient. The result can be viewed as the sensibility the model pays to each channel;
  - Then, we multiply the above sensibility to the feature maps followed by a ReLU activation, this result 
  is the heatmap we want; 
  - Finally, upscale the heatmap to the same size of input image, then we can visualize the heatmap and original image together

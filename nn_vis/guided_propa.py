@@ -32,7 +32,7 @@ class Guided_backprop:
             guide = self.activation_maps.pop()
             # only use the "activated" positions
             guide[guide > 0] = 1
-
+            # discard negative grad
             pos_grad_output = torch.clamp(grad_output[0], min=0.0)
             new_grad_input = pos_grad_output * guide
 
