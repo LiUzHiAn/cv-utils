@@ -8,7 +8,7 @@ This project provides some utility functions to apply the t-SNE algorithm implem
 ```python
 python t_SNE.py 
 ```
-By default, the `FashionMNIST` is used and the visualization type is set to `image_scatter`. You can play with `MNIST` and use the `point_scatter` visualization style instead, which correspond to [#L221](./tSNE.py#L221) and [#L230](./tSNE.py#L230), respectively. 
+By default, the `FashionMNIST` is used and the visualization type is set to `image_scatter`. You can play with `MNIST` and use the `point_scatter` visualization style instead, which correspond to [#L221](./t_SNE.py#L221) and [#L230](./t_SNE.py#L230), respectively. 
 
 ### Result
 - MNIST
